@@ -1,1 +1,141 @@
-Hi Biyani! 
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body,html {font-family: "Lato", sans-serif;
+background-color:pink;
+height: 100%;
+}
+
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 50px;
+  text-align: center;
+  height: 100%;
+
+}
+
+#Home {background-color:orange;}
+#About-Me {background-color:purple;}
+#Contact-Me {background-color:blue;}
+#My-Gallery {background-color:red;}
+</style>
+</head>
+<body>
+
+<p style="text-align:center;font-size:30px;color:Black;">Welcome to my website!!!</p>
+<button class="tablink" onclick="openPage('Home', this, 'orange')" id="defaultOpen">Home</button>
+<button class="tablink" onclick="openPage('About-Me', this, 'purple')" id="defaultOpen">About Me</button>
+<button class="tablink" onclick="openPage('Contact-Me', this, 'blue')" id="defaultOpen">Contact Me</button>
+<button class="tablink" onclick="openPage('My-Gallery', this, 'red')" id="defaultOpen">My Gallery</button>
+
+
+<div id="Home" class="tabcontent">
+  <h1>Home</h1>
+  <p></p>
+</div>
+
+<div id="About-Me" class="tabcontent">
+  <h1>About Me</h1>
+  <p>Hello!</p>
+  <p>I'm Pooja Biyani!</p>
+  <p>I'm a girl with self-motivation and self-satisfaction!</p>
+</div>
+
+<div id="Contact-Me" class="tabcontent">
+  <h1>Contact Me</h1>
+  <br/>
+  <form name="contact-form" action="contact-form.php" onsubmit="return contactFormValidation()" method="post">
+    <p>Name:       <input type="text" name="username" placeholder="UserName"/></p><br/>
+    <p>Email:      <input type="text" name="email" placeholder="xyz@gmail.com"/></p><br/>
+    <p>Query:      <textarea rows="5" cols="40" name="query" placeholder="Please Enter your Queries here!!! "/></textarea></p><br/>
+    <input type="submit" name="submit" value="Submit"/><br/><br/><br/>
+  </form></pre>
+
+  <p>My Contact Details:</p>
+  <p>Phone No. : 8501880330</p>
+  <p>Email Id : pooja.biyani@zemosolabs.com </p>
+</div>
+
+<div id="My-Gallery" class="tabcontent">
+  <h1>My Gallery</h1>
+  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Green_Grass.jpg" style="width:25%; height:25%">
+  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Monument_Valley_Overlook.jpg" style="width:25%; height:25%">
+  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Stream.jpg" style="width:25%; height:25%">
+  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Death_Valley_-_Dunes.jpg" style="width:25%; height:25%">
+  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Apres_la_Pluie.jpg" style="width:25%; height:25%">
+  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Lost_in_a_Field.jpg" style="width:25%; height:25%">
+
+
+</div>
+
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+
+
+
+function contactFormValidation(){
+  var username=document.forms["contact-form"]["username"];
+  var email=document.forms["contact-form"]["email"];
+  var query=document.forms["contact-form"]["query"];
+
+  if(username.value=="")
+  {
+    alert("Name cannot be empty, Please enter your name!");
+    name.focus();
+    return false;
+  }
+  if(email.value=="")
+  {
+    alert("Email ID cannot be empty, Please enter your Email ID!");
+    email.focus();
+    return false;
+  }
+  if(query.value=="")
+  {
+    alert("Query cannot be empty, Please enter your Query!");
+    query.focus();
+    return false;
+  }
+  return true;
+}
+
+</script>
+
+</body>
+</html>
