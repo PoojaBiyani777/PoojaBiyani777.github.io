@@ -2,9 +2,11 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <style>
 body,html {font-family: "Lato", sans-serif;
-background-color:pink;
+background-color:white;
 height: 100%;
 }
 
@@ -35,7 +37,7 @@ height: 100%;
 }
 
 #Home {background-color:orange;}
-#About-Me {background-color:purple;}
+#About-Me {background-color:gray}
 #Contact-Me {background-color:blue;}
 #My-Gallery {background-color:red;}
 </style>
@@ -44,27 +46,29 @@ height: 100%;
 
 <p style="text-align:center;font-size:30px;color:Black;">Welcome to my website!!!</p>
 <button class="tablink" onclick="openPage('Home', this, 'orange')" id="defaultOpen">Home</button>
-<button class="tablink" onclick="openPage('About-Me', this, 'purple')" id="defaultOpen">About Me</button>
+<button class="tablink" onclick="openPage('About-Me', this, 'gray')" id="defaultOpen">About Me</button>
 <button class="tablink" onclick="openPage('Contact-Me', this, 'blue')" id="defaultOpen">Contact Me</button>
 <button class="tablink" onclick="openPage('My-Gallery', this, 'red')" id="defaultOpen">My Gallery</button>
 
 
 <div id="Home" class="tabcontent">
   <h1>Home</h1>
+  <img src="https://sep.yimg.com/ay/yhst-96277647721196/smiley-face-welcome-sign-8.gif"/>
   <p></p>
 </div>
 
 <div id="About-Me" class="tabcontent">
   <h1>About Me</h1>
-  <p>Hello!</p>
-  <p>I'm Pooja Biyani!</p>
+  <p>Hello! I'm Pooja Biyani!</p>
+  <p>I like to learn new things, face challenges and to get experienced with all kinds of flavours.</p>
   <p>I'm a girl with self-motivation and self-satisfaction!</p>
+  <img src="images/pooja.jpg" width=50% height=80% />
 </div>
 
 <div id="Contact-Me" class="tabcontent">
   <h1>Contact Me</h1>
   <br/>
-  <form name="contact-form" action="contact-form.php" onsubmit="return contactFormValidation()" method="post">
+  <form name="contact-form" onsubmit="return contactFormValidation()" method="post">
     <p>Name:       <input type="text" name="username" placeholder="UserName"/></p><br/>
     <p>Email:      <input type="text" name="email" placeholder="xyz@gmail.com"/></p><br/>
     <p>Query:      <textarea rows="5" cols="40" name="query" placeholder="Please Enter your Queries here!!! "/></textarea></p><br/>
@@ -78,18 +82,27 @@ height: 100%;
 
 <div id="My-Gallery" class="tabcontent">
   <h1>My Gallery</h1>
-  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Green_Grass.jpg" style="width:25%; height:25%">
-  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Monument_Valley_Overlook.jpg" style="width:25%; height:25%">
-  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Stream.jpg" style="width:25%; height:25%">
-  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Death_Valley_-_Dunes.jpg" style="width:25%; height:25%">
-  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Apres_la_Pluie.jpg" style="width:25%; height:25%">
-  <img src="/home/pooja/Downloads/idea-IC-182.4323.46/plugins/android/lib/sampleData/backgrounds/scenic/Lost_in_a_Field.jpg" style="width:25%; height:25%">
-
+  <img id="peocock" src="https://media.wired.com/photos/59822d6fbc944559d607e43a/master/pass/PeacockHP-691483428.jpg" style="width:25%; height:25%">
+  <img id="lion" src="http://r.ddmcdn.com/w_830/s_f/o_1/cx_98/cy_0/cw_640/ch_360/APL/uploads/2015/07/cecil-AP463227356214-1000x400.jpg" style="width:25%; height:25%">
+  <img id="penguin" src="https://this.deakin.edu.au/wp-content/uploads/2015/10/animal_altruism_hero-e1446702421190.jpg" style="width:25%; height:25%">
+  <img id="cat" src="https://www.kidzone.ws/animals/images/index_catfish.jpg" style="width:25%; height:25%">
+  <img id="bird" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnIznsHZpyyOSgEuxm9XAwwlYyNwqs2LEYXJnnzwnxmZP8KH4h" style="width:25%; height:25%">
+  <img id="animals" src="http://www3.canisius.edu/~grandem/animalshabitats/JungleAnimalsBorder.jpg" style="width:25%; height:25%">
+  <div id="jsonImages">jsonImages ID</div>
+  <a href="gallery-admin.js" >GALLERY ADMIN</a>
 
 </div>
 
 
 <script>
+
+
+
+var obj=JSON.parse(data);
+var img=obj.images;
+getJSONImages(img);
+getId();
+
 function openPage(pageName,elmnt,color) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -106,8 +119,6 @@ function openPage(pageName,elmnt,color) {
 }
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
-
-
 
 function contactFormValidation(){
   var username=document.forms["contact-form"]["username"];
@@ -133,6 +144,24 @@ function contactFormValidation(){
     return false;
   }
   return true;
+}
+
+function getJSONImages(img){
+  var txt="";
+	for(var index=0; index<img.length;index++){
+    var name = obj.images[index].name;
+    var url = obj.images[index].url;
+		var information = obj.images[index].information;
+		var updatedDate = obj.images[index].updatedDate;
+		var imgId =  index;
+
+		txt += "<img src=\"";
+		txt += url;
+		txt +=  "\" height=25% width=25%";
+	}
+
+	document.getElementById('addImg').innerHTML = txt;
+
 }
 
 </script>

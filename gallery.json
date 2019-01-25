@@ -1,0 +1,17 @@
+
+{
+   "products": [
+      {
+         "name": "Levis Blue Denim",
+         "imgPath": "https://wallpaperbrowse.com/media/images/3848765-wallpaper-images-download.jpg"
+      },
+      {
+         "name": "Pepe Black Jeans",
+         "imgPath": "https://wallpaperbrowse.com/media/images/3848765-wallpaper-images-download.jpg"
+      },
+      {
+         "name": "Pepe Blue Jeans",
+         "imgPath": "https://wallpaperbrowse.com/media/images/3848765-wallpaper-images-download.jpg"
+      }
+  ]
+}
