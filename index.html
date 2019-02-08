@@ -19,7 +19,7 @@ height: 100%;
   cursor: pointer;
   padding: 14px 16px;
   font-size: 17px;
-  width: 25%;
+  width: 20%;
 }
 
 .tablink:hover {
@@ -40,16 +40,17 @@ height: 100%;
 #About-Me {background-color:gray}
 #Contact-Me {background-color:blue;}
 #My-Gallery {background-color:red;}
+#Edit-Gallery {background-color: pink;}
 </style>
 </head>
 <body>
 
 <p style="text-align:center;font-size:30px;color:Black;">Welcome to my website!!!</p>
 <button class="tablink" onclick="openPage('Home', this, 'orange')" id="defaultOpen">Home</button>
-<button class="tablink" onclick="openPage('About-Me', this, 'gray')" id="defaultOpen">About Me</button>
-<button class="tablink" onclick="openPage('Contact-Me', this, 'blue')" id="defaultOpen">Contact Me</button>
-<button class="tablink" onclick="openPage('My-Gallery', this, 'red')" id="defaultOpen">My Gallery</button>
-
+<button class="tablink" onclick="openPage('About-Me', this, 'gray')">About Me</button>
+<button class="tablink" onclick="openPage('Contact-Me', this, 'blue')">Contact Me</button>
+<button class="tablink" onclick="openPage('My-Gallery', this, 'red')">My Gallery</button>
+<button id="editGallery" class="tablink" >Edit Gallery</button>
 
 <div id="Home" class="tabcontent">
   <h1>Home</h1>
@@ -68,12 +69,13 @@ height: 100%;
 <div id="Contact-Me" class="tabcontent">
   <h1>Contact Me</h1>
   <br/>
+
   <form name="contact-form" onsubmit="return contactFormValidation()" method="post">
-    <p>Name:       <input type="text" name="username" placeholder="UserName"/></p><br/>
-    <p>Email:      <input type="text" name="email" placeholder="xyz@gmail.com"/></p><br/>
-    <p>Query:      <textarea rows="5" cols="40" name="query" placeholder="Please Enter your Queries here!!! "/></textarea></p><br/>
+    <p>Name: <input type="text" name="username" placeholder="UserName"/></p><br/>
+    <p>Email:<input type="text" name="email" placeholder="xyz@gmail.com"/></p><br/>
+    <p>Query:<textarea rows="5" cols="40" name="query" placeholder="Please Enter your Queries here!!! "/></textarea></p><br/>
     <input type="submit" name="submit" value="Submit"/><br/><br/><br/>
-  </form></pre>
+  </form>
 
   <p>My Contact Details:</p>
   <p>Phone No. : 8501880330</p>
@@ -88,20 +90,20 @@ height: 100%;
   <img id="cat" src="https://www.kidzone.ws/animals/images/index_catfish.jpg" style="width:25%; height:25%">
   <img id="bird" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnIznsHZpyyOSgEuxm9XAwwlYyNwqs2LEYXJnnzwnxmZP8KH4h" style="width:25%; height:25%">
   <img id="animals" src="http://www3.canisius.edu/~grandem/animalshabitats/JungleAnimalsBorder.jpg" style="width:25%; height:25%">
-  <div id="jsonImages">jsonImages ID</div>
-  <a href="gallery-admin.js" >GALLERY ADMIN</a>
-
+  <br/><a href="edit-gallery.html" >GALLERY ADMIN</a>
 </div>
+
+<div id="Edit-Gallery" class="tabcontent">
+  <script src="edit-gallery.html"></script>
+</div>
+
 
 
 <script>
 
-
-
-var obj=JSON.parse(data);
-var img=obj.images;
-getJSONImages(img);
-getId();
+  document.getElementById("editGallery").onclick=function(){
+    location.href="edit-gallery.html";
+  };
 
 function openPage(pageName,elmnt,color) {
   var i, tabcontent, tablinks;

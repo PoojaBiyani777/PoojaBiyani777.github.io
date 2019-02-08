@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+<center><h1>Gallery Admin</h1></center>
+<div class="container" >
+  <form onsubmit="add()">
+<p>Name Of the Image: <input type="text" id="name" name="name" placeholder="Butterfly" required><br/></p>
+<p>URL of the Image : <input type="text" id="url" name="url" placeholder="Your Image URL" required><br/></p>
+<p>Information of the Image: <input type="text" id="info" name="info" placeholder="This is a beautiful creature!" required><br/></p>
+<p>Updated Date of the Image: <input type="date" id="date" name="date" placeholder="Date must not be th future!" required><br/></p>
+<input type="submit" value="submit" name="submit" required>
+<br/><br/>
+</form>
+
+<button onclick="add()">AddImage</button>
+<button onclick="delete()">Click on the image to delete last image</button>
+</div>
+
+<div>
+<table id="imageTable" style="border-collapse:collapse;" align=center>
+</table>
+</div>
+<script>
+
+var obj={"images":[{"name":"dog", "url":"images/dog.jpg", "information":"doggy","updatedDate":"2018-01-23","id":"0"},
+  {"name":"autumn", "url":"images/autumn.jpg", "information":"autumn","updatedDate":"2018-01-23","id":"1"},
+{"name":"butterfly", "url":"images/butterfly.jpg", "information":"butterfly","updatedDate":"2018-01-23","id":"2"},
+{"name":"drop", "url":"images/drop.jpg", "information":"drop","updatedDate":"2018-01-23","id":"3"},
+{"name":"grid", "url":"images/grid.jpg", "information":"grid","updatedDate":"2018-01-23","id":"4"},
+{"name":"smiles", "url":"images/smiles.jpg", "information":"smiles","updatedDate":"2018-01-23","id":"5"}]};
+
+images = obj.images;
+var $=jQuery;
+
+
+function setImages(){
+var tableRef = document.getElementById('imageTable');
+tableRef.innerHTML = "";
+		var tr,td;
+
+    $(document).ready(function(){
+  $("img").click(function(){
+  if(confirm("Are you sure to delete this image???"+image.index))
+  {
+        deleteImage(image.index);
+  }
+    });
+  });
+
+	for(var i in images){
+		var image = document.createElement("img");
+    image.index=i;
+    image.style.width="100%";
+    image.style.height="100%";
+    image.style.display="block";
+
+
+		if(i%3 === 0){
+			tr = tableRef.insertRow();
+		}
+		td  = tr.insertCell();
+		image.src = images[i].url;
+    td.appendChild(image);
+    td.style.width="250px";
+    td.style.height="250px";
+    td.style.padding="20px";
+
+	}
+
+}
+
+setImages();
+
+function add()
+{
+  var name=document.getElementById("name").value;
+	var url=document.getElementById("url").value;
+  var info=document.getElementById("info").value;
+  var date=document.getElementById("date").value;
+	obj['images'].push({"name": name, "url" : url,"information": info, "updatedDate": date, "id":""});
+	setImages();
+  alert("Image added successfully");
+}
+function deleteImage(id){
+   for(var i in images){
+          if(images[i].id == id ){
+            console.log("Deleting image "+ id);
+               delete images[i];
+               break;
+          }
+        }
+        setImages();
+        }
+</script>
+</body>
+
+<style>
+
+.container{
+  text-align:center;
+}
+body{
+  background-color: pink;
+}
+
+</style>
+</html>
